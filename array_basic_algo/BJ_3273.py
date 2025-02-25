@@ -19,3 +19,25 @@ while start<end:
         start+=1
 print(cnt)
 # 9
+
+import sys
+
+def main():
+    # 입력 받기
+    n = int(sys.stdin.readline().strip())  # 수열의 크기 n
+    a = list(map(int, sys.stdin.readline().split()))  # 수열 a
+    x = int(sys.stdin.readline().strip())  # 목표값 x
+
+    occur = [False] * 2000001  # 각 숫자의 존재 여부를 저장할 배열
+    ans = 0  # 쌍의 개수
+
+    # a[i]를 하나씩 확인하며 (x - a[i])가 존재하는지 확인
+    for num in a:
+        if x - num > 0 and occur[x - num]:  # (x - num)이 존재하면 정답 증가
+            ans += 1
+        occur[num] = True  # 현재 숫자를 존재하는 것으로 표시
+
+    print(ans)
+
+if __name__ == "__main__":
+    main()
